@@ -1,0 +1,218 @@
+.accessibility-button {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+  z-index: var(--z-accessibility);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  border: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: all var(--transition-normal);
+}
+
+.accessibility-button:hover {
+  background-color: var(--color-orange-dark);
+  transform: scale(1.1);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+}
+
+.accessibility-button:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.a11y-text {
+  display: none;
+  font-size: 0.65rem;
+  font-weight: 700;
+  margin-top: 2px;
+  text-align: center;
+  line-height: 1;
+}
+
+@media (max-width: 480px) {
+  .accessibility-button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+}
+
+/* ACCESSIBILITY PANEL */
+
+.accessibility-panel-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-modal);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.accessibility-panel-overlay + .accessibility-panel.open ~ .accessibility-panel-overlay {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.accessibility-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: min(100%, 420px);
+  height: 100vh;
+  background-color: var(--color-white);
+  z-index: var(--z-modal);
+  overflow-y: auto;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  transition: transform var(--transition-normal);
+}
+
+.accessibility-panel.dark-mode {
+  background-color: var(--color-gray-dark);
+  color: var(--color-white);
+}
+
+.accessibility-panel.open {
+  transform: translateX(0);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.panel-close {
+  background-color: transparent;
+  border: none;
+  color: var(--color-black);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+}
+
+.panel-close:hover {
+  background-color: var(--color-gray-light);
+}
+
+.panel-close:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: 2px;
+}
+
+.panel-content {
+  padding: var(--spacing-lg);
+}
+
+.panel-section {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.panel-section h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  color: var(--color-black);
+}
+
+.panel-section.dark-mode h3 {
+  color: var(--color-white);
+}
+
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-sm);
+}
+
+.panel-button {
+  padding: 0.65rem var(--spacing-md);
+  text-align: left;
+  background-color: var(--color-gray-light);
+  color: var(--color-black);
+  border: 1px solid var(--color-gray-light);
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-size: 0.95rem;
+  min-height: 40px;
+}
+
+.panel-button:hover {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  border-color: var(--color-orange);
+  transform: none;
+}
+
+.panel-button:focus-visible {
+  outline: 2px solid var(--color-orange);
+  outline-offset: -2px;
+}
+
+.panel-button.active {
+  background-color: var(--color-orange);
+  color: var(--color-white);
+  border-color: var(--color-orange);
+}
+
+.panel-button.reset-button {
+  background-color: var(--color-error);
+  color: var(--color-white);
+  border-color: var(--color-error);
+  margin-top: var(--spacing-lg);
+}
+
+.panel-button.reset-button:hover {
+  background-color: darken(var(--color-error), 10%);
+  border-color: darken(var(--color-error), 10%);
+}
+
+.panel-section.dark-mode .panel-button {
+  background-color: var(--color-gray-medium);
+  color: var(--color-white);
+  border-color: var(--color-gray-medium);
+}
+
+@media (max-width: 480px) {
+  .accessibility-panel {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accessibility-panel {
+    transform: translateX(0);
+  }
+
+  .accessibility-button {
+    animation: none;
+  }
+}
